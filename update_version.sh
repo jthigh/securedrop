@@ -69,11 +69,6 @@ sed -i "s@$(echo "${OLD_VERSION}" | sed 's/\./\\./g')@$NEW_VERSION@g" molecule/b
 OLD_RELEASE=$(cat molecule/shared/stable.ver)
 if [[ ! $NEW_VERSION == *~rc* ]]; then
     echo "${NEW_VERSION}" > molecule/shared/stable.ver
-    sed -i "s@$(echo "${OLD_RELEASE}" | sed 's/\./\\./g')@$NEW_VERSION@g" docs/set_up_admin_tails.rst
-    sed -i "s@$(echo "${OLD_RELEASE}" | sed 's/\./\\./g')@$NEW_VERSION@g" docs/conf.py
-    # Upgrade docs to Ubuntu 16.04 reference current stable version explicitly.
-    # Where we're talking about the 0.12 _series_ (the first to support Xenial),
-    # the phrase "0.12 series" is used, so this regex is safe to run.
 fi
 
 # Update the changelog
