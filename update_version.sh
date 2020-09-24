@@ -63,10 +63,8 @@ sed -i "s/^\(securedrop_app_code_sdist_version: \"securedrop-app-code-\).*/\1${N
 # Update the version in molecule testinfra vars
 sed -i "s@$(echo "${OLD_VERSION}" | sed 's/\./\\./g')@$NEW_VERSION@g" molecule/builder-xenial/tests/vars.yml
 
-# If version doesnt have an rc designator, its considered stable
-# theres a few things that peg to that stable version like upgrade testing logic
-# and strings inside the documentation
-OLD_RELEASE=$(cat molecule/shared/stable.ver)
+# If version doesn't have an rc designator, it's considered stable.
+# The upgrade testing logic relies on this variable.
 if [[ ! $NEW_VERSION == *~rc* ]]; then
     echo "${NEW_VERSION}" > molecule/shared/stable.ver
 fi
